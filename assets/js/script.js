@@ -4,18 +4,18 @@ var difficultySelector = ""; /* default no diffulty selected */
 
 /* Clears all content, for new content to be added */
 function setGameContainerContent(screen) {
-        /* clears the container first */
-        let container = document.getElementById('game-container');
-        container.innerHTML = '';
+    /* clears the container first */
+    let container = document.getElementById('game-container');
+    container.innerHTML = '';
 
-        /* determins which content to add to show a certain screen */
-        if (screen == "pre-game") {
-            container.innerHTML = "yo g";
-        } else if (screen == "start-game") {
-            container.innerHTML = "start game";
-        } else {
-            container.innerHTML = "ERROR";
-        }
+    /* determins which content to add to show a certain screen */
+    if (screen == "pre-game") {
+        container.innerHTML = "yo g";
+    } else if (screen == "start-game") {
+        container.innerHTML = "start game";
+    } else {
+        container.innerHTML = "ERROR";
+    }
 }
 
 
@@ -23,18 +23,28 @@ function setGameContainerContent(screen) {
 function selectDifficultyButton(buttonNumber) {
 
     let buttons = document.getElementById("difficulty-checkbox-container").children;
+    let livesTimerList = document.getElementById("lives-timer-amounts").children;
 
     for (let i = 0; i < 3; i++) {
         if (i == buttonNumber) {
             /* adds different border colour to selected button */
-            buttons[i].style.color = accent;
-            buttons[i].style.borderColor = accent;
+            buttons[i].classList.add("difficulty-buttons-clicked");
             difficultySelector = buttons[i].innerHTML;
-            print(difficultySelector);
+
+            if (i == 0) {
+                livesTimerList[0].innerHTML = "Lives : 5";
+                livesTimerList[1].innerHTML = "Timer : 10s";
+            } else if (i == 1) {
+                livesTimerList[0].innerHTML = "Lives : 4";
+                livesTimerList[1].innerHTML = "Timer : 7s";
+            } else if (i == 2) {
+                livesTimerList[0].innerHTML = "Lives : 3";
+                livesTimerList[1].innerHTML = "Timer : 5s";
+            }
+
         } else {
             /* resets the rest of the buttons borders in case it was changed before*/
-            buttons[i].style.color = "white";
-            buttons[i].style.borderColor = "white";
+            buttons[i].classList.remove("difficulty-buttons-clicked");
         }
     }
 
@@ -42,10 +52,10 @@ function selectDifficultyButton(buttonNumber) {
 
 
 /* makes sure a difficulty is selected for it to start game */
-function checkDifficultyIsSelected(){
+function checkDifficultyIsSelected() {
 
-    if (difficultySelector != ""){
-          setGameContainerContent("start-game");
+    if (difficultySelector != "") {
+        setGameContainerContent("start-game");
     }
 }
 

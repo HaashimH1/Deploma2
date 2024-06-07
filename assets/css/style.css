@@ -89,10 +89,20 @@ h1 {
     color: white;
     cursor: pointer;
     border: 2px solid white;
-    border-radius: 5px;
-    font-weight: 700;
+    border-radius: 7px;
+    font-weight: 500;
     font-size: 18px;
     text-align: center;
+}
+
+
+.difficulty-buttons-clicked{
+    border-color: var(--accent);
+    border-width: 2.25px;
+    background-color: #151515;
+    color: var(--accent);
+    font-weight: 750;
+    transition: all 0.4s;
 }
 
 
@@ -102,7 +112,7 @@ h1 {
     height: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 
@@ -150,6 +160,10 @@ h1 {
     flex-direction: row;
     gap: 1em;
     justify-content: center;
+}
+
+#lives-timer-amounts{
+    list-style-type: none;
 }
 
 
