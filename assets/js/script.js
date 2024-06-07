@@ -1,6 +1,31 @@
 var accent = "#02d498";
 var difficultySelector = ""; /* default no diffulty selected */
 
+var homeHTML = ` <h1>Welcome to Game of Flags</h1>
+            <p>Aim of this Game is to Figure out the Countrys Flag Shown.</p>
+            <p> There are 3 levels to choose from, each with a
+                different Timer length and Lives. If Time runs out or guess incorrectly you lose a live. Lose your lives
+                and the Game ends.
+            </p>
+
+            <button class="buttons" id="game-button" onclick="setGameContainerContent('pre-game')">GAME</button>`;
+
+var preGameHTML = `<h1>CHOOSE DIFFICULTY</h1>
+
+            <div id="difficulty-content-container">
+                <div id="difficulty-checkbox-container">
+                    <button class="difficulty-buttons" onclick="selectDifficultyButton(0)">EASY</button>
+                    <button class="difficulty-buttons" onclick="selectDifficultyButton(1)">MEDIUM</button>
+                    <button class="difficulty-buttons" onclick="selectDifficultyButton(2)">HARD</button>
+                </div>
+
+                <ul id="lives-timer-amounts">
+                      <li>Lives : 3-5</li>
+                      <li>Timer : 10s-5s</li>
+                </ul>
+
+                <button class="buttons" onclick="checkDifficultyIsSelected()">START</button>`;
+
 
 /* Clears all content, for new content to be added */
 function setGameContainerContent(screen) {
@@ -10,7 +35,7 @@ function setGameContainerContent(screen) {
 
     /* determins which content to add to show a certain screen */
     if (screen == "pre-game") {
-        container.innerHTML = "yo g";
+        container.innerHTML = preGameHTML;
     } else if (screen == "start-game") {
         container.innerHTML = "start game";
     } else {
@@ -58,8 +83,6 @@ function checkDifficultyIsSelected() {
         setGameContainerContent("start-game");
     }
 }
-
-
 
 
 /* easy writing to console */
