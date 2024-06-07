@@ -56,8 +56,30 @@ footer{
     padding: 0em 10rem;
 }
 
-header h1{
+h1{
     color: var(--accent);
+}
+
+.buttons{
+    width: 5.5em;
+    height: 2.5em;
+    background-color: black;
+    color:var(--accent);
+    cursor: pointer;
+    border: 2px solid var(--accent);
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+
+}
+
+.buttons:hover{
+    font-size: 18.5px;
+    font-weight: 750;
+    background-color: #0D0D0D;
+    transition: all .2s;
+
 }
 
 #header-content-container{
@@ -84,7 +106,7 @@ header h1{
 }
 
 #game-container{
-    background-color: #151515;
+    background-color: #101010;
     width: 100%;
     height: 100%;
     min-height: calc(100vh - 5rem);
@@ -92,7 +114,7 @@ header h1{
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    gap: 5em;
+    gap: 3em;
     border-radius: 2px;
     padding: 2em 1em;
 }
@@ -112,7 +134,7 @@ header h1{
     }
 
     #game-container{
-        max-width: 70em;
+        max-width: 65em;
     }
 
 }
