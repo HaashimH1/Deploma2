@@ -1,6 +1,7 @@
 
-print("Console is working");
-
+function clearGameContainerContent() {
+    document.getElementById('game-container').innerHTML = '';
+}
 
 
 
