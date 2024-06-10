@@ -181,7 +181,7 @@ const flags = [
     { name: 'Saint Pierre and Miquelon', img: 'assets/images/flags/pm.png' },
     { name: 'Pitcairn', img: 'assets/images/flags/pn.png' },
     { name: 'Puerto Rico', img: 'assets/images/flags/pr.png' },
-    { name: 'Palestine, State of', img: 'assets/images/flags/ps.png' },
+    { name: 'Palestine', img: 'assets/images/flags/ps.png' },
     { name: 'Portugal', img: 'assets/images/flags/pt.png' },
     { name: 'Palau', img: 'assets/images/flags/pw.png' },
     { name: 'Paraguay', img: 'assets/images/flags/py.png' },
@@ -252,10 +252,13 @@ const flags = [
 ];
     
 
+var currentFlags = [];
 var accent = "#02d498";
 var difficultySelector = ""; /* default no diffulty selected */
 var lives;
 var timer;
+var correctFlag;
+var gameLoop = false;
 
 var homeHTML = ` <h1>Welcome to Game of Flags</h1>
             <p>Aim of this Game is to Figure out the Countrys Flag Shown.</p>
@@ -284,7 +287,9 @@ var preGameHTML = `<h1>CHOOSE DIFFICULTY</h1>
 
 /* loads home page first */
 window.onload = function () {
-    document.getElementById('game-container').innerHTML = homeHTML;
+    // document.getElementById('game-container').innerHTML = homeHTML;
+    difficultySelector = "EASY";
+    loadGame();
 };
 
 
@@ -362,8 +367,37 @@ function loadGame() {
         print("invalid diff slector")
     }
 
+    /* this array is used to remove flags that have been used already, this is the array the game will access constantly */
+    currentFlags = flags;
+
+
+
+    document.getElementById("game-container").style.gap = "1em";
+    document.getElementById("game-container").style.padding = "1em 1em";
+
+    newRound();
 
 }
+
+
+function newRound(){
+
+    /* chooses random index in array for random flag */
+    let randomFlagIndex = Math.floor(Math.random() * currentFlags.length);
+
+    let flagImage = document.getElementById("flag-image");
+    flagImage.src = currentFlags[randomFlagIndex].img;
+    correctFlag = currentFlags[randomFlagIndex].name;
+
+    print(correctFlag);
+
+    gameLoop = true;
+
+
+    
+}
+
+
 
 
 /* easy writing to console */
