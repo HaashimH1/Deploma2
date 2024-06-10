@@ -115,6 +115,19 @@ h1 {
     gap:1em;
 }
 
+.answers-buttons{
+    width: 7em;
+    height: 4em;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    border: 2px solid white;
+    border-radius: 7px;
+    font-weight: 500;
+    font-size: 18px;
+    text-align: center;
+}
+
 
 
 #header-content-container {
@@ -197,8 +210,19 @@ h1 {
 
 #flag-image{
     width: 80%;
-    max-width: 25em;
+    max-width: 40em;
     height: auto;
+}
+
+#answers-buttons-container{
+    width: 100%;
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
 }
 
 
