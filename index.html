@@ -30,25 +30,9 @@
     <main>
         <section id="game-container">
 
-            <div id="lives-timer-container">
-                <div class="lives-timer-content">
-                    <p>Timer : </p>
-                    <p id="timer-display">10s</p>
-                </div>
-                <div class="lives-timer-content">
-                    <p>Lives : </p>
-                    <p id="lives-display">5</p>
-                </div>
-            </div>
+        <p>Correct Answer Count :</p>
 
-            <img id="flag-image" alt="random country flag">
-
-            <div id="answers-buttons-container">
-              <button class="answers-buttons" onclick="checkAnswer(0)">flag 1</button>
-              <button class="answers-buttons" onclick="checkAnswer(1)">flag 2</button>
-              <button class="answers-buttons" onclick="checkAnswer(2)">flag 3</button>
-              <button class="answers-buttons" onclick="checkAnswer(3)">flag 4</button>
-            </div>
+        <button class="buttons start-new-game-button" onclick="setGameContainerContent('pre-game')">START NEW GAME</button>
            
 
         </section>

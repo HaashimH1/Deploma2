@@ -1012,6 +1012,7 @@ var correctFlag = {
     buttonIndex: null,
 };
 var gameLoop = false;
+var correctCount;
 
 var homeHTML = ` <h1>Welcome to Game of Flags</h1>
             <p>Aim of this Game is to Figure out the Countrys Flag Shown.</p>
@@ -1038,11 +1039,33 @@ var preGameHTML = `<h1>CHOOSE DIFFICULTY</h1>
 
                 <button class="buttons" onclick="checkDifficultyIsSelected()">START</button>`;
 
+var gameHTML = `<div id="lives-timer-container">
+                <div class="lives-timer-content">
+                    <p>Timer : </p>
+                    <p id="timer-display">10s</p>
+                </div>
+                <div class="lives-timer-content">
+                    <p>Lives : </p>
+                    <p id="lives-display">5</p>
+                </div>
+            </div>
+
+            <img id="flag-image" alt="random country flag">
+
+            <div id="answers-buttons-container">
+              <button class="answers-buttons" onclick="checkAnswer(0)">flag 1</button>
+              <button class="answers-buttons" onclick="checkAnswer(1)">flag 2</button>
+              <button class="answers-buttons" onclick="checkAnswer(2)">flag 3</button>
+              <button class="answers-buttons" onclick="checkAnswer(3)">flag 4</button>
+            </div>`;
+
+var postGameHTML =
+    ` <p></p>
+<button class="buttons start-new-game-button" onclick="setGameContainerContent('pre-game')">START NEW GAME</button>`;
+
 /* loads home page first */
 window.onload = function () {
-    // document.getElementById('game-container').innerHTML = homeHTML;
-    difficultySelector = "EASY";
-    loadGame();
+    document.getElementById('game-container').innerHTML = homeHTML;
 };
 
 
@@ -1056,8 +1079,8 @@ function setGameContainerContent(screen) {
     if (screen == "pre-game") {
         container.innerHTML = preGameHTML;
     } else if (screen == "start-game") {
+        container.innerHTML = gameHTML;
         loadGame();
-        container.innerHTML = "start game";
     } else {
         container.innerHTML = "ERROR";
     }
@@ -1098,13 +1121,14 @@ function selectDifficultyButton(buttonNumber) {
 
 /* makes sure a difficulty is selected for it to start game */
 function checkDifficultyIsSelected() {
-
     if (difficultySelector != "") {
         setGameContainerContent("start-game");
     }
 }
 
 function loadGame() {
+
+    correctCount = 0;
 
     /* set settings for respective difficulty */
     if (difficultySelector == "EASY") {
@@ -1125,6 +1149,7 @@ function loadGame() {
 
 
 
+    /* game container less gaps between content for better visibility */
     document.getElementById("game-container").style.gap = "1em";
     document.getElementById("game-container").style.padding = "1em 1em";
 
@@ -1176,22 +1201,26 @@ function newRound() {
 
 
 function checkAnswer(buttonIndex) {
+    /* incase user button spams then it will skip a few rounds */
+    if (gameLoop) {
 
-    let chosenButton = document.getElementById("answers-buttons-container").children[buttonIndex];
+        let chosenButton = document.getElementById("answers-buttons-container").children[buttonIndex];
 
-    if (buttonIndex == correctFlag.buttonIndex) {
-        /* green button to show it was correct */
-        chosenButton.classList.add("answers-buttons-correct-effect");
-        stopRound();
-    } else {
-        lives--;
-        /* red button shows it was wrong */
-        chosenButton.classList.add("answers-buttons-wrong-effect");
-        /* yellow button to show the actual correct answer*/
-        document.getElementById("answers-buttons-container").children[correctFlag.buttonIndex].classList.add("answers-buttons-wrong-right-effect");
-        stopRound();
+        if (buttonIndex == correctFlag.buttonIndex) {
+            /* green button to show it was correct */
+            chosenButton.classList.add("answers-buttons-correct-effect");
+            correctCount++;
+            stopRound();
+        } else {
+            lives--;
+            /* red button shows it was wrong */
+            chosenButton.classList.add("answers-buttons-wrong-effect");
+            /* yellow button to show the actual correct answer*/
+            document.getElementById("answers-buttons-container").children[correctFlag.buttonIndex].classList.add("answers-buttons-wrong-right-effect");
+            stopRound();
+        }
+
     }
-
 }
 
 
@@ -1204,12 +1233,14 @@ function removeFlagFromPool(flagToRemove) {
 function stopRound() {
     gameLoop = false;
 
-     /* Game pauses after choosing answer */
+    /* Game pauses after choosing answer */
     setTimeout(() => {
 
         if (lives <= 0) {
             /* end game */
-            document.getElementById("game-container").innerHTML = "long";
+            document.getElementById("game-container").innerHTML = postGameHTML;
+            /* since we used backtikcs to inject the html, have to add the string like this*/
+            document.getElementById("game-container").children[0].innerHTML = "Correct Answers : " + correctCount;
         } else {
             /* resets button right or wrong effects */
             resetButtonEffects();
@@ -1245,6 +1276,7 @@ const timerInterval = setInterval(() => {
         }
     }
 }, 1000);
+
 
 
 

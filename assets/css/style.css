@@ -149,6 +149,11 @@ h1 {
     transition: all 0.1s;
 }
 
+.start-new-game-button{
+    width: 10em;
+    height: 3em;
+}
+
 
 
 #header-content-container {
