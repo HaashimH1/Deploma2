@@ -128,13 +128,25 @@ h1 {
     text-align: center;
 }
 
+.answers-buttons-correct-effect{
+    border-color: lime;
+    color: lime;
 
-.answers-buttons:hover{
+    transition: all 0.1s;
+}
 
-    color: var(--accent);
+.answers-buttons-wrong-effect{
+    border-color: red;
+    color: red; 
 
-    transition: all 0.3s;
+    transition: all 0.1s;
+}
 
+.answers-buttons-wrong-right-effect{
+    border-color: yellow;
+    color: yellow; 
+
+    transition: all 0.1s;
 }
 
 
@@ -166,7 +178,7 @@ h1 {
     background-color: #101010;
     width: 100%;
     height: 100%;
-    min-height: calc(100vh - 5rem);
+    min-height: calc(100vh - 6rem);
     display: flex;
     flex-direction: column;
     align-items: center;

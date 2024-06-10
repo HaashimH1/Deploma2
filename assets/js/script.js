@@ -1,5 +1,4 @@
-const flags = [
-    {
+const flags = [{
         name: 'Andorra',
         img: 'assets/images/flags/ad.png'
     },
@@ -1007,9 +1006,10 @@ var accent = "#02d498";
 var difficultySelector = ""; /* default no diffulty selected */
 var lives;
 var timer;
+var currentTimer;
 var correctFlag = {
-    name:"",
-    buttonIndex:null,
+    name: "",
+    buttonIndex: null,
 };
 var gameLoop = false;
 
@@ -1135,6 +1135,13 @@ function loadGame() {
 
 function newRound() {
 
+    /* rests timer for new round */
+    currentTimer = timer;
+    document.getElementById("timer-display").innerHTML = currentTimer;
+    /* updates lives if changed */
+    document.getElementById("lives-display").innerHTML = lives;
+
+
     /* chooses random index in array for random flag */
     let randomFlagIndex = Math.floor(Math.random() * currentFlags.length);
 
@@ -1144,13 +1151,19 @@ function newRound() {
 
     print(correctFlag.name);
 
-    
+    /* removes correct flag from pool so it can never be chosen again */
+    removeFlagFromPool(correctFlag.name);
+
+
+
     /* generate random answers for the buttons */
     let randomCorrectButton = Math.floor(Math.random() * 4);
-    for(let i = 0; i < 4; i++){
-        if (i == randomCorrectButton){
+    correctFlag.buttonIndex = randomCorrectButton;
+
+    for (let i = 0; i < 4; i++) {
+        if (i == randomCorrectButton) {
             document.getElementById("answers-buttons-container").children[i].innerHTML = correctFlag.name;
-        }else{
+        } else {
             let randomWrongButton = Math.floor(Math.random() * currentFlags.length)
             document.getElementById("answers-buttons-container").children[i].innerHTML = currentFlags[randomWrongButton].name;
         }
@@ -1158,18 +1171,77 @@ function newRound() {
 
 
 
-    
-    
     gameLoop = true;
 }
 
+
+function checkAnswer(buttonIndex) {
+
+    let chosenButton = document.getElementById("answers-buttons-container").children[buttonIndex];
+
+    if (buttonIndex == correctFlag.buttonIndex) {
+        /* green button to show it was correct */
+        chosenButton.classList.add("answers-buttons-correct-effect");
+        stopRound();
+    } else {
+        lives--;
+        /* red button shows it was wrong */
+        chosenButton.classList.add("answers-buttons-wrong-effect");
+        /* yellow button to show the actual correct answer*/
+        document.getElementById("answers-buttons-container").children[correctFlag.buttonIndex].classList.add("answers-buttons-wrong-right-effect");
+        stopRound();
+    }
+
+}
+
+
+function removeFlagFromPool(flagToRemove) {
+    /* removes the flag name passed in */
+    currentFlags = currentFlags.filter(flag => flag.name !== flagToRemove);
+}
+
+/* chosen correct answer */
+function stopRound() {
+    gameLoop = false;
+
+     /* Game pauses after choosing answer */
+    setTimeout(() => {
+
+        if (lives <= 0) {
+            /* end game */
+            document.getElementById("game-container").innerHTML = "long";
+        } else {
+            /* resets button right or wrong effects */
+            resetButtonEffects();
+            newRound();
+        }
+
+    }, 1500);
+
+
+}
+
+function resetButtonEffects() {
+
+    let buttons = document.getElementById("answers-buttons-container").children;
+
+    for (let i = 0; i < 4; i++) {
+        buttons[i].classList.remove("answers-buttons-correct-effect", "answers-buttons-wrong-effect", "answers-buttons-wrong-right-effect");
+    }
+
+}
+
+
 const timerInterval = setInterval(() => {
     if (gameLoop) {
-        timer -= 1;
-        document.getElementById("timer-display").innerHTML = timer;
+        currentTimer -= 1;
+        document.getElementById("timer-display").innerHTML = currentTimer;
 
-        if (timer <= 0) {
+        if (currentTimer <= 0) {
             gameLoop = false;
+            lives--;
+            document.getElementById("answers-buttons-container").children[correctFlag.buttonIndex].classList.add("answers-buttons-wrong-right-effect");
+            stopRound();
         }
     }
 }, 1000);
