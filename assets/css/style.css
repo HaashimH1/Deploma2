@@ -129,6 +129,15 @@ h1 {
 }
 
 
+.answers-buttons:hover{
+
+    color: var(--accent);
+
+    transition: all 0.3s;
+
+}
+
+
 
 #header-content-container {
     width: auto;

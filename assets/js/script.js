@@ -1007,7 +1007,10 @@ var accent = "#02d498";
 var difficultySelector = ""; /* default no diffulty selected */
 var lives;
 var timer;
-var correctFlag;
+var correctFlag = {
+    name:"",
+    buttonIndex:null,
+};
 var gameLoop = false;
 
 var homeHTML = ` <h1>Welcome to Game of Flags</h1>
@@ -1137,12 +1140,27 @@ function newRound() {
 
     let flagImage = document.getElementById("flag-image");
     flagImage.src = currentFlags[randomFlagIndex].img;
-    correctFlag = currentFlags[randomFlagIndex].name;
+    correctFlag.name = currentFlags[randomFlagIndex].name;
 
-    print(correctFlag);
+    print(correctFlag.name);
 
+    
+    /* generate random answers for the buttons */
+    let randomCorrectButton = Math.floor(Math.random() * 4);
+    for(let i = 0; i < 4; i++){
+        if (i == randomCorrectButton){
+            document.getElementById("answers-buttons-container").children[i].innerHTML = correctFlag.name;
+        }else{
+            let randomWrongButton = Math.floor(Math.random() * currentFlags.length)
+            document.getElementById("answers-buttons-container").children[i].innerHTML = currentFlags[randomWrongButton].name;
+        }
+    }
+
+
+
+    
+    
     gameLoop = true;
-
 }
 
 const timerInterval = setInterval(() => {
