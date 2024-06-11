@@ -1013,6 +1013,11 @@ var correctFlag = {
 };
 var gameLoop = false;
 var correctCount;
+var gameContainer;
+var timerDisplay;
+var livesDisplay;
+var answerButtonContainer;
+var flagImage;
 
 var homeHTML = ` <h1>Welcome to Game of Flags</h1>
             <p>Aim of this Game is to Figure out the Countrys Flag Shown.</p>
@@ -1065,24 +1070,22 @@ var postGameHTML =
 
 /* loads home page first */
 window.onload = function () {
-    document.getElementById('game-container').innerHTML = homeHTML;
+    gameContainer = document.getElementById("game-container");
+    gameContainer.innerHTML = homeHTML;
 };
 
 
 /* Clears all content, for new content to be added */
 function setGameContainerContent(screen) {
-    /* clears the container first */
-    let container = document.getElementById('game-container');
-    container.innerHTML = '';
 
     /* determins which content to add to show a certain screen */
     if (screen == "pre-game") {
-        container.innerHTML = preGameHTML;
+        gameContainer.innerHTML = preGameHTML;
     } else if (screen == "start-game") {
-        container.innerHTML = gameHTML;
+        gameContainer.innerHTML = gameHTML;
         loadGame();
     } else {
-        container.innerHTML = "ERROR";
+        gameContainer.innerHTML = "ERROR";
     }
 }
 
@@ -1099,16 +1102,24 @@ function selectDifficultyButton(buttonNumber) {
             buttons[i].classList.add("difficulty-buttons-clicked");
             difficultySelector = buttons[i].innerHTML;
 
+            let livesMSg = "Lives : ";
+            let timerMsg = "Timer : ";
+
             if (i == 0) {
-                livesTimerList[0].innerHTML = "Lives : 5";
-                livesTimerList[1].innerHTML = "Timer : 10s";
+                livesMSg += "5";
+                timerMsg += "10s"
             } else if (i == 1) {
-                livesTimerList[0].innerHTML = "Lives : 4";
-                livesTimerList[1].innerHTML = "Timer : 7s";
+                livesMSg += "4";
+                timerMsg += "7s"
             } else if (i == 2) {
-                livesTimerList[0].innerHTML = "Lives : 3";
-                livesTimerList[1].innerHTML = "Timer : 5s";
+               livesMSg += "3";
+                timerMsg += "5s"
             }
+
+            livesTimerList[0].innerHTML = livesMSg;
+            livesTimerList[1].innerHTML = timerMsg;
+
+
 
         } else {
             /* resets the rest of the buttons borders in case it was changed before*/
@@ -1141,7 +1152,7 @@ function loadGame() {
         lives = 3;
         timer = 5;
     } else {
-        print("invalid diff slector")
+        
     }
 
     /* this array is used to remove flags that have been used already, this is the array the game will access constantly */
@@ -1150,8 +1161,14 @@ function loadGame() {
 
 
     /* game container less gaps between content for better visibility */
-    document.getElementById("game-container").style.gap = "1em";
-    document.getElementById("game-container").style.padding = "1em 1em";
+    gameContainer.style.gap = "1em";
+    gameContainer.style.padding = "1em 1em";
+
+    /* minimilize DOM interactions/searches , so resuse var that holds the DOM elements */
+    timerDisplay = document.getElementById("timer-display");
+    livesDisplay = document.getElementById("lives-display")
+    answerButtonContainer = document.getElementById("answers-buttons-container")
+    flagImage = document.getElementById("flag-image");
 
     newRound();
 
@@ -1162,15 +1179,14 @@ function newRound() {
 
     /* rests timer for new round */
     currentTimer = timer;
-    document.getElementById("timer-display").innerHTML = currentTimer;
+    timerDisplay.innerHTML = currentTimer;
     /* updates lives if changed */
-    document.getElementById("lives-display").innerHTML = lives;
+    livesDisplay.innerHTML = lives;
 
 
     /* chooses random index in array for random flag */
     let randomFlagIndex = Math.floor(Math.random() * currentFlags.length);
 
-    let flagImage = document.getElementById("flag-image");
     flagImage.src = currentFlags[randomFlagIndex].img;
     correctFlag.name = currentFlags[randomFlagIndex].name;
 
@@ -1187,10 +1203,10 @@ function newRound() {
 
     for (let i = 0; i < 4; i++) {
         if (i == randomCorrectButton) {
-            document.getElementById("answers-buttons-container").children[i].innerHTML = correctFlag.name;
+            answerButtonContainer.children[i].innerHTML = correctFlag.name;
         } else {
             let randomWrongButton = Math.floor(Math.random() * currentFlags.length)
-            document.getElementById("answers-buttons-container").children[i].innerHTML = currentFlags[randomWrongButton].name;
+            answerButtonContainer.children[i].innerHTML = currentFlags[randomWrongButton].name;
         }
     }
 
@@ -1204,7 +1220,7 @@ function checkAnswer(buttonIndex) {
     /* incase user button spams then it will skip a few rounds */
     if (gameLoop) {
 
-        let chosenButton = document.getElementById("answers-buttons-container").children[buttonIndex];
+        let chosenButton = answerButtonContainer.children[buttonIndex];
 
         if (buttonIndex == correctFlag.buttonIndex) {
             /* green button to show it was correct */
@@ -1216,7 +1232,7 @@ function checkAnswer(buttonIndex) {
             /* red button shows it was wrong */
             chosenButton.classList.add("answers-buttons-wrong-effect");
             /* yellow button to show the actual correct answer*/
-            document.getElementById("answers-buttons-container").children[correctFlag.buttonIndex].classList.add("answers-buttons-wrong-right-effect");
+            answerButtonContainer.children[correctFlag.buttonIndex].classList.add("answers-buttons-wrong-right-effect");
             stopRound();
         }
 
@@ -1237,10 +1253,7 @@ function stopRound() {
     setTimeout(() => {
 
         if (lives <= 0) {
-            /* end game */
-            document.getElementById("game-container").innerHTML = postGameHTML;
-            /* since we used backtikcs to inject the html, have to add the string like this*/
-            document.getElementById("game-container").children[0].innerHTML = "Correct Answers : " + correctCount;
+            endGame();
         } else {
             /* resets button right or wrong effects */
             resetButtonEffects();
@@ -1252,9 +1265,20 @@ function stopRound() {
 
 }
 
+function endGame(){
+    gameContainer.innerHTML = postGameHTML;
+     /* since we used backtikcs to inject the html, have to add the string like this*/
+    gameContainer.children[0].innerHTML = "Correct Answers : " + correctCount;
+
+    /* if user restarts game, makes sure difficulty is reset so it does not start game without chossing it again */
+    difficultySelector = "";
+}
+
+
+
 function resetButtonEffects() {
 
-    let buttons = document.getElementById("answers-buttons-container").children;
+    let buttons = answerButtonContainer.children;
 
     for (let i = 0; i < 4; i++) {
         buttons[i].classList.remove("answers-buttons-correct-effect", "answers-buttons-wrong-effect", "answers-buttons-wrong-right-effect");
@@ -1266,12 +1290,12 @@ function resetButtonEffects() {
 const timerInterval = setInterval(() => {
     if (gameLoop) {
         currentTimer -= 1;
-        document.getElementById("timer-display").innerHTML = currentTimer;
+        timerDisplay.innerHTML = currentTimer;
 
         if (currentTimer <= 0) {
             gameLoop = false;
             lives--;
-            document.getElementById("answers-buttons-container").children[correctFlag.buttonIndex].classList.add("answers-buttons-wrong-right-effect");
+            answerButtonContainer.children[correctFlag.buttonIndex].classList.add("answers-buttons-wrong-right-effect");
             stopRound();
         }
     }
