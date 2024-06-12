@@ -1266,6 +1266,8 @@ function stopRound() {
 }
 
 function endGame(){
+    gameContainer.style.gap = "3em";
+    gameContainer.style.padding = "2em 1em";
     gameContainer.innerHTML = postGameHTML;
      /* since we used backtikcs to inject the html, have to add the string like this*/
     gameContainer.children[0].innerHTML = "Correct Answers : " + correctCount;

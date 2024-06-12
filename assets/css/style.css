@@ -62,7 +62,7 @@ h1 {
 }
 
 .logo{
-    width: 4.5em;
+    width: 5em;
     height: 4.5em;
 }
 
@@ -143,6 +143,7 @@ h1 {
 .answers-buttons-correct-effect{
     border-color: lime;
     color: lime;
+    box-shadow: 0px 0px 20px 0px rgba(0,255,0,1);
 
     transition: all 0.1s;
 }
@@ -157,6 +158,9 @@ h1 {
 .answers-buttons-wrong-right-effect{
     border-color: yellow;
     color: yellow; 
+    box-shadow: 0px 0px 20px 0px rgba(255,255,0,1);
+
+
 
     transition: all 0.1s;
 }
@@ -198,6 +202,7 @@ h1 {
     gap: 3em;
     border-radius: 2px;
     padding: 2em 1em;
+    /* box-shadow: 0px 0px 10px 0px rgba(2,212,152,0.3); */
 }
 
 #difficulty-content-container {
@@ -274,6 +279,12 @@ h1 {
 
     #game-container {
         max-width: 65em;
+        gap:5em;
+        padding:3em 3em;
+    }
+
+    #difficulty-content-container {
+        gap: 4em;
     }
 
 }
