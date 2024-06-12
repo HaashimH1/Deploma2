@@ -114,6 +114,8 @@ h1 {
     background-color: #151515;
     color: var(--accent);
     font-weight: 750;
+    box-shadow: 0px 0px 10px 0px rgba(2,212,152,1);
+
     transition: all 0.4s;
 }
 
