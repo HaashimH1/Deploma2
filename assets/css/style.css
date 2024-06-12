@@ -53,11 +53,23 @@ footer {
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    padding: 0em 10rem;
+    padding: 0em 3em;
+    color: var(--accent);
 }
 
 h1 {
     color: var(--accent);
+}
+
+.logo{
+    width: 4.5em;
+    height: 4.5em;
+}
+
+.footer-logo{
+    width: 3em;
+    height: 3em;
+
 }
 
 .buttons {
@@ -164,11 +176,6 @@ h1 {
     justify-content: flex-start;
 }
 
-
-#image-logo {
-    height: 4.5rem;
-    width: 4.5rem;
-}
 
 #header-h1-container {
     width: 8em;
