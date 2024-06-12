@@ -1190,8 +1190,6 @@ function newRound() {
     flagImage.src = currentFlags[randomFlagIndex].img;
     correctFlag.name = currentFlags[randomFlagIndex].name;
 
-    print(correctFlag.name);
-
     /* removes correct flag from pool so it can never be chosen again */
     removeFlagFromPool(correctFlag.name);
 
