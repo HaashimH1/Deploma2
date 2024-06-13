@@ -1065,7 +1065,7 @@ window.onload = function () {
 };
 
 
-/* Clears all content, for new content to be added */
+/* Changes game container inner HTMLmto dislay a new page */
 function setGameContainerContent(screen) {
 
     /* determins which content to add to show a certain screen */
@@ -1075,7 +1075,7 @@ function setGameContainerContent(screen) {
         gameContainer.innerHTML = gameHTML;
         loadGame();
     } else {
-        gameContainer.innerHTML = "ERROR";
+        gameContainer.innerHTML = "ERROR, Refresh Website";
     }
 }
 

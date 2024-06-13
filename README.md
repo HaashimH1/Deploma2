@@ -21,11 +21,17 @@ Link to the [Live Website](https://haashimh1.github.io/Deploma2/)
 ![footer screenshot](assets/images/README_images/readme5.png)
   - Again a minimal design to match the header as this aswell does not serve much of a purpose, only to hold a link ti my GitHub profile and my name for Author.
 
-## Game Functionality
+## Game Breakdown
 This is a one page Website, therefore the game containers inner HTML content is changed to give an effect of travelling to a new page. The game is split into 4 pages :
+
 - Home : Breakdown of the game.
 - Pre Game : Select the difficulty.
 - Game : Playing the game.
 - Post game : Shows score and restart option.
 
-Each page with a button to go to next page (Post game's restart button goes to Pre Game instead incase user wants to change the difficulty).
+Each page with a button to go to next page (Post game's restart button goes to Pre Game instead incase user wants to change the difficulty). Buttons will call the same function on click but with different arguements, which will asign the inner HTML contents of the game container to a respective Global variable which holds the HTML for that certain page. Example of one of those Global variables and the function :
+![code snippet](assets/images/README_images/readme6.png)
+![code snippet](assets/images/README_images/readme7.png)
+
+- Home Page Breakdown
+
