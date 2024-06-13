@@ -1019,15 +1019,6 @@ var livesDisplay;
 var answerButtonContainer;
 var flagImage;
 
-var homeHTML = ` <h1>Welcome to Game of Flags</h1>
-            <p>Aim of this Game is to Figure out the Countrys Flag Shown.</p>
-            <p> There are 3 levels to choose from, each with a
-                different Timer length and Lives. If Time runs out or guess incorrectly you lose a live. Lose your lives
-                and the Game ends.
-            </p>
-
-            <button class="buttons" id="game-button" onclick="setGameContainerContent('pre-game')">GAME</button>`;
-
 var preGameHTML = `<h1>CHOOSE DIFFICULTY</h1>
 
             <div id="difficulty-content-container">
@@ -1071,7 +1062,6 @@ var postGameHTML =
 /* loads home page first */
 window.onload = function () {
     gameContainer = document.getElementById("game-container");
-    gameContainer.innerHTML = homeHTML;
 };
 
 
@@ -1264,6 +1254,7 @@ function stopRound() {
 }
 
 function endGame(){
+    /* resets the styles changed when game started */
     gameContainer.style.gap = "3em";
     gameContainer.style.padding = "2em 1em";
     gameContainer.innerHTML = postGameHTML;
