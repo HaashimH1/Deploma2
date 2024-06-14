@@ -34,4 +34,17 @@ Each page with a button to go to next page (Post game's restart button goes to P
 ![code snippet](assets/images/README_images/readme7.png)
 
 - Home Page Breakdown
+![home page screenshot](assets/images/README_images/readme8.png)
+  - Short breakdown of the game and button to next page with the accent colours to signify its importance.
+
+
+- Pre Game Breadown
+- ![pre game screenshot](assets/images/README_images/readme9.png) ![button click effect screenshot](assets/images/README_images/readme10.png)
+  - Buttons to select the difficulty and showcases the lives and timer amount for each. On difficulty button click a class of styles are added in a transition to show the importance of choosing your set difficulty, also updates a global variable set the difficulty currently chosen. Below is the function that makes sure a difficulty is chosen when start button is clicked.
+  - ![code snippet](assets/images/README_images/readme11.png)
+  - difficulty var is set to empty string as default, to show one is not selected.
+
+- Gameplay breakdown
+- Post Game breakdown
+
 
