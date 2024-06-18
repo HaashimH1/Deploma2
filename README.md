@@ -83,7 +83,17 @@ Each page with a button to go to next page (Post game's restart button goes to P
     - ![code snippet](assets/images/README_images/readme18.png)
       - In the HTML, the onclick attribute is used to call the function checkAnswer with its index as arguements.
     - ![code snippet](assets/images/README_images/readme19.png)
-      - In the HTML, the onclick attribute is used to call the function checkAnswer with its index as arguements.
+      - It first checks is the game loop is true just in case the user clicks multiple buttons causing rounds to skip, then checks if the index passed in mataches with correctFlags' index. If it does, correctCount is incremented as answer is correct and a effect is added by adding a class onto that certain buttons element. Same thing is done if the answer is wrong but with a different effect and the correctCount not changing. Below is an example of those effects.
+        - Right Answer Chosen
+          - ![right answer chosen button effect](assets/images/README_images/readme20.png)
+        - Wrong Answer Chosen
+          - ![wrong answer chosen button effect](assets/images/README_images/readme21.png)
+        - Time runs out
+          - ![No answer chosen button effect](assets/images/README_images/readme22.png)
+    
+    - After this, a function stopRound. It pauses the game by 1.5 seconds for the user to reflect on the answer, during this gameLoop is set to false so that timer stops ticking, then it checks if the lives is 0 or below, if it is then it calls a function endGame, if not then it resets the button effects that were just added and calls a new round.
+      - ![code snippet](assets/images/README_images/readme23.png)
+          
     
 
 
