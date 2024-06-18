@@ -60,6 +60,32 @@ Each page with a button to go to next page (Post game's restart button goes to P
       | gameLoop    | Boolean to show if the game loop is on or off, an example of its use case is that timer only ticks down if game loop is on, otherwise it will count down below 0|
       | correctCount    | Intager to show how many correct answers the user has got|
       | gameContainer, timerDisplay, livesDisplay, answerButtonContainer, flagImage    | All are DOM Elements, these are global since we want to minimize the DOM searches as this is an intense task so all these are declared global and initialized when a game starts so it can manipluate the DOM with least searches.|
+    
+  - When the screen is changed to Game play, the function is called below to initialize some variables and set the game up.
+    - ![code snippet](assets/images/README_images/readme13.png) 
+      - First it resets correctCount to 0 incase the game was just restarted, then it initilizes the lives and timer variables repective to the difficulty chosen.
+    - ![code snippet](assets/images/README_images/readme14.png) 
+      - currentFlags is then asigned to the cont flags to reset the array incase game was restarted, game container style changes to better fit the new screen and the initialization of the DOM element variables that will be manipluated throughout the game (Note the gameContainer was initialized in a different function on Window Load up since this element was also maniplauted in previous screens) then newRound function is called to setup the new round.
+  
+
+
+  - New Round setup.
+    - ![code snippet](assets/images/README_images/readme15.png) 
+      - First is sets and updates the timer display to the start timer, updates the lives display to show the lives left, then chooses a random flag from currentFlags to be chosen as the correct answer, image source is updated to show the chosen flag, correctFlags is then asigned the name of the country chosen for future manipluation, then the flag chosen is then removed from the array so it is not chosen again for that game.
+    - ![code snippet](assets/images/README_images/readme16.png)
+      - Then the button holding the correct answer is randomized then asgined to correct flags' button index for future manipulation, then the rest of the buttons are randomized with wrong answers. Finnalt the gameLoop is set to true, this is done at the end so that the timer ticks only when the previous setup is done for fairness to user.
+
+  - At this point in the program the round is fully setup, there is no functions running in the background apart from the time ticking function shown below.
+    - ![code snippet](assets/images/README_images/readme17.png)
+      - This function is called using setInterval every 1000ms (1 second) to update the timer accordingly.
+
+  - Button is clicked to reveal answer
+    - ![code snippet](assets/images/README_images/readme18.png)
+      - In the HTML, the onclick attribute is used to call the function checkAnswer with its index as arguements.
+    - ![code snippet](assets/images/README_images/readme19.png)
+      - In the HTML, the onclick attribute is used to call the function checkAnswer with its index as arguements.
+    
+
 
 
 
