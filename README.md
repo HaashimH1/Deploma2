@@ -42,9 +42,28 @@ Each page with a button to go to next page (Post game's restart button goes to P
 - ![pre game screenshot](assets/images/README_images/readme9.png) ![button click effect screenshot](assets/images/README_images/readme10.png)
   - Buttons to select the difficulty and showcases the lives and timer amount for each. On difficulty button click a class of styles are added in a transition to show the importance of choosing your set difficulty, also updates a global variable set the difficulty currently chosen. Below is the function that makes sure a difficulty is chosen when start button is clicked.
   - ![code snippet](assets/images/README_images/readme11.png)
-  - difficulty var is set to empty string as default, to show one is not selected.
+  - difficulty selector is set to empty string as default, to show one is not selected.
 
 - Gameplay breakdown
+- ![gameplay screenshot](assets/images/README_images/readme12.png) 
+  - Gameplay consists of a country flg, 4 buttons to choose answer from and a display showing the remaining lives and timer. Before further breakdown, below is a table showing all global variables used and what it holds. All of these are blobal since it needs to be manipulated in multiple different functions.
+
+    - | Vaiable Name     | Justification |
+      |----------        |     ----------|
+      | flags (const)    |Array of 250 objects, each holding a countrys name and a path link to its flags image file|
+      | currentFlags    | Array of 250 objects, on new game it is asigned to flags (variable above) so that every flag chosen is then taken out this array, so game changes only affect this array and not the original above so that on game restart it can be reasigned to the original array holding all the flags again.|
+      | difficultySelector    | String to hold the difficulty slected in pre game screen|
+      | lives    | Integer to hold the lives left|
+      | timer    | Integer to hold the start timer for each round|
+      | currentTimer    | Integer to hold the time left in each round|
+      | correctFlag    | Object holding the name of country chosen and its buttons index that it is in|
+      | gameLoop    | Boolean to show if the game loop is on or off, an example of its use case is that timer only ticks down if game loop is on, otherwise it will count down below 0|
+      | correctCount    | Intager to show how many correct answers the user has got|
+      | gameContainer, timerDisplay, livesDisplay, answerButtonContainer, flagImage    | All are DOM Elements, these are global since we want to minimize the DOM searches as this is an intense task so all these are declared global and initialized when a game starts so it can manipluate the DOM with least searches.|
+
+
+
+
 - Post Game breakdown
 
 
