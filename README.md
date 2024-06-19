@@ -3,6 +3,15 @@ Flags website is a method to learn all the countrys flags in a fun and challengi
 ![website responsiveness on different screens](assets/images/README_images/readme1.png)
 Link to the [Live Website](https://haashimh1.github.io/Deploma2/)
 
+
+## Table of Contents
+
+1. [Design](#design)
+2. [Game Breakdown](#game-breakdown)
+3. [Testing](#testing)
+4. [Deployment](#deployment)
+5. [Credits](#credits)
+
 ## Design
 ### Colour Scheme
 ![colour scheme palette](assets/images/README_images/readme2.png)
