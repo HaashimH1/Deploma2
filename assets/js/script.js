@@ -1239,7 +1239,7 @@ function stopRound() {
     /* Game pauses after choosing answer */
     setTimeout(() => {
 
-        if (lives <= 0) {
+        if (lives <= 0 || currentFlags.length <= 0) {
             endGame();
         } else {
             /* resets button right or wrong effects */

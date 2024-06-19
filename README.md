@@ -93,13 +93,103 @@ Each page with a button to go to next page (Post game's restart button goes to P
     
     - After this, a function stopRound. It pauses the game by 1.5 seconds for the user to reflect on the answer, during this gameLoop is set to false so that timer stops ticking, then it checks if the lives is 0 or below, if it is then it calls a function endGame, if not then it resets the button effects that were just added and calls a new round.
       - ![code snippet](assets/images/README_images/readme23.png)
-          
-    
 
-
-
-
+    - If endGame is called, this fucntion will reset the styling changes that were made before, reset difficultySelector, set the new screen to Post Game and then updates the correct guesses HTML to show it to user. 
+      - ![code snippet](assets/images/README_images/readme24.png)
 
 - Post Game breakdown
+  - ![Post game screen](assets/images/README_images/readme25.png)
+    - Displays the correct guesses and a Restart button, onlick will set the screen to Pre Game for a difficulty to be chosen again and start another game.
+
+## Testing
+
+ ### Validators
+   - HTML No errors
+   - CSS No errors
+   - JavaScript No Significant errors
+
+  Lighthouse on Desktop
+  ![Lighthouse score on Desktop](assets/images/README_images/readme26.png)
+
+  Lighthouse on Mobile
+  ![Lighthouse scroe on Mobile](assets/images/README_images/readme27.png)
+
+### Manual Testing
+Website has been tested on:
+ - Iphone 12 Pro
+ - Samsung Galaxy s20
+ - Lenovo laptop
+ - Ipad Pro
+ - Chrome
+ - Firefox
+ - Edge
+
+
+
+### Features Testing
+
+| Feature | Expectation | Result |
+|-----    |----------   |--------|
+| Game Button Onclick|Changes screen to Pre Game | Pass |
+| Select Difficulty| Displays Lives/Timer for each difficulty selected  | Pass |
+| Select Difficulty| Adds a selected button Effect | Pass |
+| Select Difficulty   | Removes Deselected button effects | Pass |
+| Start Button Onlick| Changes screen to Gameplay | Pass |
+| Start Button Onlick| Cannot change screen untill a difficulty is chosen | Pass |
+| Timer and Lives|Correct values set for difficulty chosen| Pass |
+| Flag|Random Flag is chosen and displayed| Pass |
+| Answer Buttons|The right and wrong answers are randomized and diplayed| Pass |
+| Timer Ticking|Every second timer decreases by 1| Pass |
+| Correct Answer Button Onclick|Adds correct effect and starts new round| Pass |
+|incorrect Answer Button Onclick|Adds incorrect effects and starts new round if lives ran out| Pass |
+| Timer runs out|Adds unique effect and starts new round if lives ran out| Pass |
+| Game pause before New Round| Does not allow user to click another button for about 1.5seconds untill new round | Pass |
+| New Round setup| Different Flag is chosen each round, timer resets and lives updated accordingly | Pass |
+| Endgame| Changes screen if lives or flags left is 0 or below| Pass |
+| Correct Answer Count display|Accurate value shown | Pass |
+| Start New Game Button Onclick|Changes screen back to Pre Game| Pass |
+| Select Difficulty After Restart| Cannot start game if difficulty is not chosen | Pass |
+| GitHib Logo Onclick| Opens GitHib profile in new tab | Pass |
+
+
+## Deployment
+
+
+This website was deployed using GitHib Pages.
+
+### Deployment Steps
+
+1. In the GitHub repository, navigate to the **Settings** tab.
+2. From the source section drop-down menu, select the **Master Branch**.
+3. Once this is selected, the page will be automatically refreshed with a detailed ribbon display to indicate successful deployment. The live link can be found on GitHub [here](https://haashimh1.github.io/Deploma2/).
+
+
+### Clone from GitHub
+
+To clone this repository, follow these steps:
+
+1. On the repository's GitHub page, click on the **Code** button.
+2. In the dropdown, click on **Clone** to copy the repository's URL to your clipboard.
+3. Open your terminal.
+4. Go to the directory where you want to clone the repository.
+5. Use the `git clone` command followed by the URL you copied, then hit ENTER.
+6. Done, cloned to your local machine!
+
+
+
+## Credits
+
+
+- Logo shown in the header and favicon were generated from text descriptions with [DALL-E by OpenAI](https://openai.com/index/dall-e-3/).
+- Compilation of Flags' Images were From [Flagpedia](https://flagpedia.net/download).
+- GitHub logo is a free image from [Pixabay](https://pixabay.com/vectors/github-github-logo-github-icon-6980894/)
+- Guidance on how to implement features such as timer, setting timout and removing a element from an array was from using [Stack Overflow](https://stackoverflow.com/).
+- Font utilized in this website is from [Google Fonts](https://fonts.google.com/specimen/Nunito?query=nunito).
+- Feedback from my mentor Akshat Garg @ [Code Institute](https://codeinstitute.net/)
+
+
+
+
+
 
 
