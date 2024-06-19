@@ -1002,7 +1002,6 @@ const flags = [{
 
 
 var currentFlags = [];
-var accent = "#02d498";
 var difficultySelector = ""; /* default no diffulty selected */
 var lives;
 var timer;
@@ -1097,13 +1096,13 @@ function selectDifficultyButton(buttonNumber) {
 
             if (i == 0) {
                 livesMSg += "5";
-                timerMsg += "10s"
+                timerMsg += "10s";
             } else if (i == 1) {
                 livesMSg += "4";
-                timerMsg += "7s"
+                timerMsg += "7s";
             } else if (i == 2) {
                livesMSg += "3";
-                timerMsg += "5s"
+                timerMsg += "5s";
             }
 
             livesTimerList[0].innerHTML = livesMSg;
@@ -1156,8 +1155,8 @@ function loadGame() {
 
     /* minimilize DOM interactions/searches , so resuse var that holds the DOM elements */
     timerDisplay = document.getElementById("timer-display");
-    livesDisplay = document.getElementById("lives-display")
-    answerButtonContainer = document.getElementById("answers-buttons-container")
+    livesDisplay = document.getElementById("lives-display");
+    answerButtonContainer = document.getElementById("answers-buttons-container");
     flagImage = document.getElementById("flag-image");
 
     newRound();
@@ -1193,7 +1192,7 @@ function newRound() {
         if (i == randomCorrectButton) {
             answerButtonContainer.children[i].innerHTML = correctFlag.name;
         } else {
-            let randomWrongButton = Math.floor(Math.random() * currentFlags.length)
+            let randomWrongButton = Math.floor(Math.random() * currentFlags.length);
             answerButtonContainer.children[i].innerHTML = currentFlags[randomWrongButton].name;
         }
     }
@@ -1249,8 +1248,6 @@ function stopRound() {
         }
 
     }, 1500);
-
-
 }
 
 function endGame(){
@@ -1291,12 +1288,3 @@ const timerInterval = setInterval(() => {
         }
     }
 }, 1000);
-
-
-
-
-
-/* easy writing to console */
-function print(consoleMsg) {
-    console.log(consoleMsg);
-}
