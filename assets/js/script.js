@@ -1237,7 +1237,7 @@ function stopRound() {
     gameLoop = false;
 
     /* Game pauses after choosing answer */
-    setTimeout(() => {
+    const timeOutRef = setTimeout(() => {
 
         if (lives <= 0 || currentFlags.length <= 0) {
             endGame();
@@ -1246,6 +1246,8 @@ function stopRound() {
             resetButtonEffects();
             newRound();
         }
+
+        clearTimeout(timeOutRef);
 
     }, 1500);
 }
