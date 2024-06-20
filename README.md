@@ -6,11 +6,27 @@ Link to the [Live Website](https://haashimh1.github.io/Deploma2/)
 
 ## Table of Contents
 
-1. [Design](#design)
-2. [Game Breakdown](#game-breakdown)
-3. [Testing](#testing)
-4. [Deployment](#deployment)
-5. [Credits](#credits)
+1. [User Stories](#user-stories)
+2. [Design](#design)
+3. [Game Breakdown](#game-breakdown)
+4. [Technologies Used](#technologies-used)
+5. [Testing](#testing)
+6. [Deployment](#deployment)
+7. [Credits](#credits)
+
+## User Stories
+First time User Expectations
+
+- I want to test myself of my flag knowledge and improve upon it.
+- I want to have fun no matter how little or big knowledge i have. 
+- I want to know the answer even if i get it wrong to improve my knowledge.
+- I want it to be clear structured and easy to use.
+
+Returning User Expecations
+
+- I want there to be alot of flags so i dont get bored too quickly.
+- I want to be able to change my difficulty after each game.
+
 
 ## Design
 ### Colour Scheme
@@ -103,19 +119,32 @@ Each page with a button to go to next page (Post game's restart button goes to P
     - After this, a function stopRound. It pauses the game by 1.5 seconds for the user to reflect on the answer, during this gameLoop is set to false so that timer stops ticking, then it checks if the lives is 0 or below, if it is then it calls a function endGame, if not then it resets the button effects that were just added and calls a new round.
       - ![code snippet](assets/images/README_images/readme23.png)
 
-    - If endGame is called, this fucntion will reset the styling changes that were made before, reset difficultySelector, set the new screen to Post Game and then updates the correct guesses HTML to show it to user. 
+    - If endGame is called, this function will reset the styling changes that were made before, reset difficultySelector, set the new screen to Post Game and then updates the correct guesses HTML to show it to user. 
       - ![code snippet](assets/images/README_images/readme24.png)
 
 - Post Game breakdown
   - ![Post game screen](assets/images/README_images/readme25.png)
     - Displays the correct guesses and a Restart button, onlick will set the screen to Pre Game for a difficulty to be chosen again and start another game.
 
+## Technologies Used
+
+- HTML5 - Blueprint and structure of website
+- CSS - Unique styles and design to website.
+- JavaScript - Interactabilty and logic to wesbite.
+- Git - Version control.
+- GitHub - Store the files/data of website.
+- GitPod - Building the website
+- GitHub Pages - Deploy this website for public to access.
+- Chrome Developer Tools - View screen responsiveness on different screens and tools to test website.
+
+
+
 ## Testing
 
  ### Validators
-   - HTML No errors
-   - CSS No errors
-   - JavaScript No Significant errors
+   - HTML [W3C](https://validator.w3.org/) No errors
+   - CSS [W3C Jigsaw](https://jigsaw.w3.org/css-validator/) No errors
+   - JavaScript [JSHint](https://jshint.com/) No Significant errors
 
   Lighthouse on Desktop
   ![Lighthouse score on Desktop](assets/images/README_images/readme26.png)
